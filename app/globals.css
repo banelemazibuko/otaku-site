@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-otaku-black: #0b0c10;
+  --color-otaku-grey: #1f2833;
+  --color-otaku-violet: #8a2be2;
+  --color-otaku-violet-light: #a855f7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-otaku-black);
+  color: #e5e7eb;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-otaku-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-otaku-grey);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-otaku-violet);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-otaku-violet);
+  outline-offset: 2px;
+}
