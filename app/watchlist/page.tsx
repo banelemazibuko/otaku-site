@@ -1,13 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { Bookmark } from "lucide-react";
+import { Bookmark, Lock } from "lucide-react";
 import { AnimeGrid } from "@/components/AnimeGrid";
+import { useAuth } from "@/contexts/AuthContext";
 import { useWatchlist } from "@/contexts/WatchlistContext";
 
 export default function WatchlistPage() {
-  const { watchlist, isLoading, removeFromWatchlist, watchlistCount } =
+  const { user, isLoading: authLoading, openAuthModal } = useAuth();
+  const { watchlist, isLoading: watchlistLoading, removeFromWatchlist, watchlistCount } =
     useWatchlist();
+
+  const isLoading = authLoading || watchlistLoading;
 
   if (isLoading) {
     return (
@@ -20,6 +24,31 @@ export default function WatchlistPage() {
               className="aspect-[2/3] animate-pulse rounded-xl bg-otaku-grey"
             />
           ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-center py-24 text-center">
+          <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-otaku-violet/10">
+            <Lock className="h-10 w-10 text-otaku-violet" />
+          </div>
+          <h1 className="text-2xl font-bold text-white sm:text-3xl">
+            Sign in to view your watchlist
+          </h1>
+          <p className="mt-2 max-w-sm text-sm text-gray-400">
+            Create an account or sign in to save and manage your favorite anime.
+          </p>
+          <button
+            type="button"
+            onClick={() => openAuthModal("signin")}
+            className="mt-6 flex min-h-11 items-center rounded-lg bg-otaku-violet px-6 text-sm font-semibold text-white transition-colors hover:bg-otaku-violet-light"
+          >
+            Sign In
+          </button>
         </div>
       </div>
     );
@@ -60,7 +89,7 @@ export default function WatchlistPage() {
       ) : (
         <AnimeGrid
           anime={watchlist}
-          showRemove
+          showRemoveOverlay
           onRemove={removeFromWatchlist}
         />
       )}

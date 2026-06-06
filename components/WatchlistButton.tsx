@@ -2,6 +2,7 @@
 
 import { Bookmark, BookmarkCheck } from "lucide-react";
 import { AnimeItem } from "@/lib/types";
+import { useAuth } from "@/contexts/AuthContext";
 import { useWatchlist } from "@/contexts/WatchlistContext";
 
 interface WatchlistButtonProps {
@@ -9,11 +10,17 @@ interface WatchlistButtonProps {
 }
 
 export function WatchlistButton({ anime }: WatchlistButtonProps) {
+  const { user, openAuthModal } = useAuth();
   const { isInWatchlist, addToWatchlist, removeFromWatchlist } =
     useWatchlist();
   const inWatchlist = isInWatchlist(anime.malId);
 
   function handleClick() {
+    if (!user) {
+      openAuthModal("signin");
+      return;
+    }
+
     if (inWatchlist) {
       removeFromWatchlist(anime.malId);
     } else {

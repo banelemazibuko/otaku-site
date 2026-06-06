@@ -3,11 +3,15 @@ import { AnimeCard } from "./AnimeCard";
 
 interface AnimeGridProps {
   anime: AnimeItem[];
-  showRemove?: boolean;
+  showRemoveOverlay?: boolean;
   onRemove?: (malId: number) => void;
 }
 
-export function AnimeGrid({ anime, showRemove, onRemove }: AnimeGridProps) {
+export function AnimeGrid({
+  anime,
+  showRemoveOverlay,
+  onRemove,
+}: AnimeGridProps) {
   if (anime.length === 0) {
     return (
       <p className="py-16 text-center text-gray-400">
@@ -22,7 +26,7 @@ export function AnimeGrid({ anime, showRemove, onRemove }: AnimeGridProps) {
         <AnimeCard
           key={item.malId}
           anime={item}
-          showRemove={showRemove}
+          showRemoveOverlay={showRemoveOverlay}
           onRemove={onRemove}
         />
       ))}

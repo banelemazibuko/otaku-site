@@ -20,7 +20,7 @@ function getInitials(name: string): string {
 export function Navbar() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { user, isLoading: authLoading, signOut } = useAuth();
+  const { user, isLoading: authLoading, signOut, openAuthModal } = useAuth();
   const { watchlistCount } = useWatchlist();
   const [query, setQuery] = useState(searchParams.get("q") ?? "");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -146,12 +146,13 @@ export function Navbar() {
                     )}
                   </div>
                 ) : (
-                  <Link
-                    href="/sign-in"
+                  <button
+                    type="button"
+                    onClick={() => openAuthModal("signin")}
                     className="flex min-h-11 items-center rounded-lg border border-otaku-violet px-4 text-sm font-medium text-otaku-violet transition-colors hover:bg-otaku-violet hover:text-white"
                   >
                     Sign In
-                  </Link>
+                  </button>
                 )}
               </>
             )}
