@@ -43,3 +43,25 @@ body {
   outline: 2px solid var(--color-otaku-violet);
   outline-offset: 2px;
 }
+
+.scroll-row {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-otaku-grey) transparent;
+}
+
+.scroll-row::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scroll-row::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-row::-webkit-scrollbar-thumb {
+  background: var(--color-otaku-grey);
+  border-radius: 3px;
+}
+
+.scroll-row::-webkit-scrollbar-thumb:hover {
+  background: var(--color-otaku-violet);
+}

@@ -68,15 +68,13 @@ export default async function AnimeDetailPage({ params }: AnimeDetailPageProps) 
 
           <div className="mt-8 flex flex-wrap gap-3">
             <WatchlistButton anime={anime} />
-            <button
-              type="button"
-              disabled
-              className="flex min-h-11 cursor-not-allowed items-center gap-2 rounded-lg border border-otaku-violet/30 bg-otaku-grey px-5 py-2.5 text-sm font-semibold text-gray-400"
-              title="Streaming coming soon"
+            <Link
+              href={`/watch/${anime.malId}`}
+              className="flex min-h-11 items-center gap-2 rounded-lg bg-otaku-violet px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-otaku-violet-light"
             >
-              <Play className="h-4 w-4" />
+              <Play className="h-4 w-4 fill-current" />
               Watch Now
-            </button>
+            </Link>
           </div>
 
           <Link
