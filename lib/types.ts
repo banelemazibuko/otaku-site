@@ -19,3 +19,8 @@ export type WatchHistory = Record<number, number[]>;
 export interface UserWatchHistoryStore {
   [userId: string]: WatchHistory;
 }
+
+export interface StreamResponse {
+  url?: string;
+  error?: string;
+}
